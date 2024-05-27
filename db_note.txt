@@ -1,0 +1,37 @@
+questions replaced to fields
+
+templates_section take width from template_content
+
+
+
+_____________________________
+1 - add visiblity (public or private) and admin automatic will be pulbc ======> templates table
+2 - add type (service,user) this mean made by admin or made by user ======> template table
+3 - attributes_selections ( attribute_id , selection_id , table) 
+
+
+
+_____________________________________________________________
+
+
+languages table
+id , name , prefix
+1  , arabic , ar
+2  , english , en
+3  , truskish , tu
+
+attributes table
+id,name,multilanguage
+1 , name , 1
+2 , skills , 1
+3 , has_car , 0
+
+table_attributes_multilanguage
+id , table ,table_id, attribute_name
+1  , attributes ,  1 , ar_name
+2  , attributes , 1  , en_name
+3  , attributes , 1  , tu_name
+4  , attributes , 2  , ar_skills
+4  , attributes , 2  , en_skills
+
+if you want to add in future frensh language i will develop a script to filter multi_inputs to add frensh language in this table

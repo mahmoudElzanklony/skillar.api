@@ -1,0 +1,28 @@
+price and meters at adding list start from 0 
+
+forget password message in english
+
+email should be at english format
+
+properties at home page not redirect 
+
+address from map take address automaticly and update at address inputs
+
+edit main info at profile page at bottom
+
+when update name update at top page
+
+
+when you approve at dashboard listing at home all hidden
+
+reject at dashboard home
+
+admin: live update when action is taken (reject, accept, ..etc)
+___________
+
+new feature : auto translate
+
+_____________
+
+
+select categories appeared at home page and number of ads showed
