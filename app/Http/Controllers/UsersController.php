@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\usersFormRequest;
+use App\Http\Requests\userVideoFormRequest;
 use App\Http\Resources\UserResource;
 use App\Http\traits\messages;
 use App\Models\User;
+use App\Models\users_videos;
+use App\Models\users_views;
 use Illuminate\Http\Request;
 use App\Http\traits\upload_image;
 class UsersController extends Controller
 {
-    use upload_image;
+    use upload_image , messages;
     //
     public function save(usersFormRequest $formRequest){
         $data = $formRequest->validated();
@@ -51,6 +54,34 @@ class UsersController extends Controller
             }
         }
         return messages::success_output(trans('messages.updated_successfully'),$output ?? '');
+    }
+
+    public function see_account_profile()
+    {
+        if(request()->filled('user_id')) {
+            $view = users_views::query()->firstOrCreate([
+                'user_id' => request('user_id')
+            ]);
+            $view->views = $view->views + 1;
+            $view->save();
+            return $this->success_output();
+        }
+    }
+
+    public function save_video(userVideoFormRequest $request)
+    {
+        $data = $request->validated();
+        // upload video
+        $video = $this->upload_video(request()->file('video'),'users');
+        $data['file'] = $video;
+        $data['user_id'] = auth()->id();
+        // save at user video
+        $output = users_videos::query()->updateOrCreate([
+            'user_id'=>$data['user_id']
+        ],$data);
+
+
+        return $this->success_output(trans('messages.updated_successfully'),$output ?? '');
     }
 
 }

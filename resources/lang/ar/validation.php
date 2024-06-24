@@ -23,5 +23,8 @@ return [
         'string' => ' :attribute لابد ان يكون علي الاقل :min احرف.',
         'array' => ' :attribute لابد ان يكون علي الاقل :min عنصر.',
     ],
+    'max' => [
+        'file' => ' :attribute لابد الا تتعدي مساحته عن  :max كيلو بايت.',
+    ],
 
 ];

@@ -106,5 +106,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(templates::class,'user_id')->whereRaw('parent_id is not null');
     }
 
+    public function skills()
+    {
+        return $this->belongsToMany(skills::class,users_skills::class,'user_id','skill_id')->withPivot('sub_skill','level');
+    }
+
 
 }

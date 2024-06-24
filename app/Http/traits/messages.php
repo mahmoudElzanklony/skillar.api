@@ -29,7 +29,7 @@ trait messages {
     }
 
 
-    static function success_output($msg,$data = null,$related = null){
+    static function success_output($msg = '',$data = null,$related = null){
         return response()->json(['message'=>$msg,'status'=>200,'data'=>$data,'related'=>$related]);
     }
 

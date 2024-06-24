@@ -7,19 +7,14 @@ use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\TemplatesController;
-use App\Http\Controllers\CategoriesController;
+
 use App\Http\Controllers\NotificationsController;
-use App\Http\Controllers\SectionsController;
-use App\Http\Controllers\AttributesController;
-use App\Http\Controllers\TemplateSecAttrValueController;
-use App\Http\Controllers\UsersCvsController;
-use App\Http\Controllers\TitleDescriptionController;
+
 use App\Http\Controllers\PercentageController;
-use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\OrdersController;
+
 use App\Http\Controllers\classes\general\GeneralServiceController;
 use App\Http\Controllers\JobsOffersControllerResource;
+use App\Http\Controllers\EmployeeController;
 
 
 Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
@@ -51,6 +46,27 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
     });
     // ---------------------end of users actions --------------------
+
+    // ---------------------start of profile actions --------------------
+    Route::group(['prefix'=>'/profile','middleware'=>'CheckApiAuth'],function (){
+        Route::post('/see-account-profile',[UsersController::class,'see_account_profile']);
+        Route::post('/save-video',[UsersController::class,'save_video']);
+
+    });
+    // ---------------------end of profile actions --------------------
+
+    // ---------------------start of employee actions --------------------
+    Route::group(['prefix'=>'/employee','middleware'=>'CheckApiAuth'],function (){
+        Route::post('/save-skill',[EmployeeController::class,'save_skill']);
+        Route::post('/save-language',[EmployeeController::class,'save_language']);
+        Route::post('/save-project',[EmployeeController::class,'save_project']);
+        Route::post('/save-info-item',[EmployeeController::class,'save_info_item']);
+        Route::post('/get-info-data',[EmployeeController::class,'get_info_data']);
+
+    });
+    // ---------------------end of employee actions --------------------
+
+
 
 
 

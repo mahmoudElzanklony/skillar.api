@@ -41,8 +41,22 @@ return [
     // ----------------------start of templates - ---------------------
     'reset_password_title'=>'Reset your password at skillar',
     'reset_password_message'=>'You can make new password for your account by clicking to next link',
-    'click_here'=>'Click here'
+    'click_here'=>'Click here',
 
     // ----------------------end of templates - ---------------------
+
+    // ----------------------start of skills - ---------------------
+    'skill'=>'Skill',
+    'sub_skill'=>'Sub skill',
+    'level'=>'Level',
+    // ----------------------end of skills - ---------------------
+    // ----------------------start of profile - ---------------------
+
+    'language'=>'Language',
+    'section'=>'Section',
+    'attribute'=>'Attribute',
+    'answer'=>'Answer',
+    // ----------------------end of profile - ---------------------
+
 
 ];
