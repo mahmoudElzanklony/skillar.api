@@ -24,12 +24,18 @@ class employeeInfoItemFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'=>'filled',
+            'profile_section_id'=>'filled',
             'section_id'=>'required|exists:sections,id',
-            'attribute_id'=>'required|exists:attributes,id',
-            'answer'=>'required',
-            'related_to'=>'nullable',
-            'type'=>'required',
+            'id'=>'filled|array',
+            'id.*'=>'filled',
+            'attribute_id'=>'required|array',
+            'attribute_id.*'=>'required|exists:attributes,id',
+            'answer'=>'required|array',
+            'answer.*'=>'required',
+            'type'=>'required|array',
+            'type.*'=>'required',
+            'related_to'=>'filled|array',
+            'related_to.*'=>'nullable',
         ];
     }
 

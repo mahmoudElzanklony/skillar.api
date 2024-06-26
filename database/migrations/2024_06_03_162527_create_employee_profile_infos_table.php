@@ -15,8 +15,7 @@ class CreateEmployeeProfileInfosTable extends Migration
     {
         Schema::create('employee_profile_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('section_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('employee_profile_section_id')->constrained('employee_profile_sections_data')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('attribute_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('answer');
             $table->string('type');

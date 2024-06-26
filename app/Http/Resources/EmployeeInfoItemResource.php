@@ -14,6 +14,13 @@ class EmployeeInfoItemResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+          'id'=>$this->id,
+          'employee_profile_section_id'=>$this->employee_profile_section_id,
+          'attribute_id'=>$this->attribute_id,
+          'answer'=>$this->answer,
+          'type'=>$this->type,
+          'attribute'=>AttributeResource::make($this->whenLoaded('attribute'))
+        ];
     }
 }
