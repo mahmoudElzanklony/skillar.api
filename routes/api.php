@@ -51,6 +51,7 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     Route::group(['prefix'=>'/profile','middleware'=>'CheckApiAuth'],function (){
         Route::post('/see-account-profile',[UsersController::class,'see_account_profile']);
         Route::post('/save-video',[UsersController::class,'save_video']);
+        Route::post('/get-video',[UsersController::class,'get_video']);
 
     });
     // ---------------------end of profile actions --------------------

@@ -68,6 +68,10 @@ class UsersController extends Controller
         }
     }
 
+    public function get_video()
+    {
+        return users_videos::query()->where('user_id',auth()->id())->first();
+    }
     public function save_video(userVideoFormRequest $request)
     {
         $data = $request->validated();
