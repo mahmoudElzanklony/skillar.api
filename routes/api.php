@@ -57,8 +57,8 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
         Route::post('/get-feedbacks',[FeedbacksController::class,'index']);
         Route::post('/update-feedback-status',[FeedbacksController::class,'update_status']);
         Route::post('/make-feedback',[FeedbacksController::class,'make_feedback']);
-        Route::post('/visit',[VisitsController::class,'create']);
-        Route::get('/statistics',StatisticsProfileController::class);
+        Route::post('/visit',[\App\Http\Controllers\VisitsController::class,'create']);
+        Route::get('/statistics',\App\Http\Controllers\StatisticsProfileController::class);
 
     });
     // ---------------------end of profile actions --------------------
