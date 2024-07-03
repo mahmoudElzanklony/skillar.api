@@ -15,6 +15,8 @@ use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
 use App\Http\Controllers\JobsOffersControllerResource;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ResumesController;
+
 
 
 Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
@@ -63,6 +65,8 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
         Route::post('/save-project',[EmployeeController::class,'save_project']);
         Route::post('/save-info-item',[EmployeeController::class,'save_info_item']);
         Route::post('/get-info-data',[EmployeeController::class,'get_info_data']);
+        Route::post('/save-resume',[ResumesController::class,'save']);
+        Route::post('/get-resumes',[ResumesController::class,'index']);
 
     });
     // ---------------------end of employee actions --------------------
