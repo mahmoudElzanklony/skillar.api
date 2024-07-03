@@ -7,6 +7,7 @@ use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\FeedbacksController;
 
 use App\Http\Controllers\NotificationsController;
 
@@ -15,6 +16,8 @@ use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
 use App\Http\Controllers\JobsOffersControllerResource;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\VisitsController;
+use App\Http\Controllers\StatisticsProfileController;
 
 
 Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
@@ -52,6 +55,11 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
         Route::post('/see-account-profile',[UsersController::class,'see_account_profile']);
         Route::post('/save-video',[UsersController::class,'save_video']);
         Route::post('/get-video',[UsersController::class,'get_video']);
+        Route::post('/get-feedbacks',[FeedbacksController::class,'index']);
+        Route::post('/update-feedback-status',[FeedbacksController::class,'update_status']);
+        Route::post('/make-feedback',[FeedbacksController::class,'make_feedback']);
+        Route::post('/visit',[VisitsController::class,'create']);
+        Route::get('/statistics',StatisticsProfileController::class);
 
     });
     // ---------------------end of profile actions --------------------
