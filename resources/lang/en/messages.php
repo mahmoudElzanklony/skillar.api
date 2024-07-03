@@ -14,5 +14,6 @@ return [
     'confirmed_bought'=>'operation of buying this package is done successfully',
     'payment_success'=>'Payment has been done successfully',
     'operation_done_successfully'=>'Operation done successfully',
+    'feedback_will_appear_in_your_profile'=>'Feedback will appear in your profile',
 
 ];

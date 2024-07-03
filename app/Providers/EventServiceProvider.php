@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\employee_feedbacks;
+use App\Models\users_views;
+use App\Observers\EmployeeRateObserver;
+use App\Observers\UserVistorObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,5 +32,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        employee_feedbacks::observe(EmployeeRateObserver::class);
+        users_views::observe(UserVistorObserver::class);
     }
 }
