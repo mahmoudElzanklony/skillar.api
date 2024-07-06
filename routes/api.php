@@ -70,8 +70,8 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
         Route::post('/save-project',[EmployeeController::class,'save_project']);
         Route::post('/save-info-item',[EmployeeController::class,'save_info_item']);
         Route::post('/get-info-data',[EmployeeController::class,'get_info_data']);
-        Route::post('/save-resume',[ResumesController::class,'save']);
-        Route::post('/get-resumes',[ResumesController::class,'index']);
+        Route::post('/save-resume',[\App\Http\Controllers\ResumesController::class,'save']);
+        Route::post('/get-resumes',[\App\Http\Controllers\ResumesController::class,'index']);
 
     });
     // ---------------------end of employee actions --------------------
