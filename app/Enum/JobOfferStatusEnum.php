@@ -4,7 +4,7 @@ namespace App\Enum;
 
 enum JobOfferStatusEnum:string
 {
-    case pending = 'pending';
+    case open = 'open';
     case closed = 'closed';
     case hired = 'hired';
 }

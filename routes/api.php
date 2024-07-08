@@ -16,6 +16,7 @@ use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
 use App\Http\Controllers\JobsOffersControllerResource;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CategoriesJobsControllerResource;
 
 
 
@@ -70,8 +71,8 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
         Route::post('/save-project',[EmployeeController::class,'save_project']);
         Route::post('/save-info-item',[EmployeeController::class,'save_info_item']);
         Route::post('/get-info-data',[EmployeeController::class,'get_info_data']);
-        Route::post('/save-resume',[ResumesController::class,'save']);
-        Route::post('/get-resumes',[ResumesController::class,'index']);
+        Route::post('/save-resume',[\App\Http\Controllers\ResumesController::class,'save']);
+        Route::post('/get-resumes',[\App\Http\Controllers\ResumesController::class,'index']);
 
     });
     // ---------------------end of employee actions --------------------
@@ -100,7 +101,8 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     });
 
     Route::resources([
-        'jobs-offers'=>JobsOffersControllerResource::class
+        'jobs-offers'=>JobsOffersControllerResource::class,
+        'categories-jobs'=>CategoriesJobsControllerResource::class
     ]);
 
     Route::group(['prefix'=>'/jobs-offers','middleware'=>'CheckApiAuth'],function(){

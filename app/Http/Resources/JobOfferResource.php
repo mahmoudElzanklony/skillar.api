@@ -16,6 +16,7 @@ class JobOfferResource extends JsonResource
     {
         return [
           'id'=>$this->id,
+          'company_id'=>$this->company_id,
           'name'=>$this->name,
           'description'=>$this->description,
           'responsibilities'=>$this->responsibilities,
@@ -33,6 +34,7 @@ class JobOfferResource extends JsonResource
           'applicants_count'=>$this->applicants_count,
           'views'=>$this->views,
           'created_at'=>$this->created_at->format('Y h d,h:i A'),
+          'published'=>$this->created_at->diffForHumans()
         ];
     }
 }

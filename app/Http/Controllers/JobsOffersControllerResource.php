@@ -7,6 +7,10 @@ use App\Filters\EndDateFilter;
 use App\Filters\jobs_offers\CategoryIdFilter;
 use App\Filters\jobs_offers\CityIdFilter;
 use App\Filters\jobs_offers\CompanyIdFilter;
+use App\Filters\jobs_offers\CountryIdFilter;
+use App\Filters\jobs_offers\MaxExperienceFilter;
+use App\Filters\jobs_offers\MinExperienceFilter;
+use App\Filters\jobs_offers\NameFilter;
 use App\Filters\StartDateFilter;
 use App\Http\Actions\JobOffersWithAllData;
 use App\Http\Requests\jobOfferFormRequest;
@@ -35,7 +39,7 @@ class JobsOffersControllerResource extends Controller
     public function index():JsonResource
     {
         //
-        $data = JobOffersWithAllData::get();
+        $data = JobOffersWithAllData::get()->with('company.image');
         $output  = app(Pipeline::class)
             ->send($data)
             ->through([
@@ -43,7 +47,11 @@ class JobsOffersControllerResource extends Controller
                 EndDateFilter::class,
                 CategoryIdFilter::class,
                 CityIdFilter::class,
-                CompanyIdFilter::class
+                CountryIdFilter::class,
+                CompanyIdFilter::class,
+                MinExperienceFilter::class,
+                MaxExperienceFilter::class,
+                NameFilter::class
             ])
             ->thenReturn()
             ->paginate(10);
@@ -92,8 +100,12 @@ class JobsOffersControllerResource extends Controller
     public function show($id)
     {
         //
-        $data = JobOffersWithAllData::get()->with('applicants.resume.user')->find($id);
-        $this->increase_views($data);
+        $data = JobOffersWithAllData::get()->with('applicants.resume.user')->with('company.image')->find($id);
+        if(!request()->filled('has_not_view')){
+            $this->increase_views($data);
+        }
+        $data->load('category');
+        $data->load('city');
         return JobOfferResource::make($data);
     }
 

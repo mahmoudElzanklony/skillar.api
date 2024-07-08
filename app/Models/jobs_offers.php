@@ -30,4 +30,19 @@ class jobs_offers extends Model
         return $this->hasMany(jobs_offers_applicants::class,'job_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(jobs_categories::class,'category_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(cities::class,'city_id');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(User::class,'company_id');
+    }
+
 }

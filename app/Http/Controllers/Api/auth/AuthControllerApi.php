@@ -102,7 +102,9 @@ class AuthControllerApi extends AuthServicesClass
     public function user(){
         //$user = User::query()->find()
         //$user['role'] = roles::query()->find($user->role_id);
-        return JWTAuth::parseToken()->authenticate();
+        $user =  JWTAuth::parseToken()->authenticate();
+        $user['role'] = $user->load('role');
+        return $user;
     }
 
     public function user_by_activation_code(){
