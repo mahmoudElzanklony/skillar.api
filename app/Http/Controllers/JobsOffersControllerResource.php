@@ -57,7 +57,7 @@ class JobsOffersControllerResource extends Controller
                 NIDFilter::class
             ])
             ->thenReturn()
-            ->paginate(10);
+            ->paginate(1);
         return JobOfferResource::collection($output);
     }
 

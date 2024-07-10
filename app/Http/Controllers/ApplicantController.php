@@ -30,4 +30,11 @@ class ApplicantController extends Controller
 
         return messages::success_output(__('messages.saved_successfully'),JobOfferApplicantsResource::make($output));
     }
+
+    public function get_applicants()
+    {
+        $data = jobs_offers_applicants::query()->where('job_id','=',request('job_id'))
+            ->with('resume.user')->orderBy('id','DESC')->get();
+        return JobOfferApplicantsResource::collection($data);
+    }
 }

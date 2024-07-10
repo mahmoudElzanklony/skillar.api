@@ -114,6 +114,7 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     Route::group(['prefix'=>'/jobs-offers','middleware'=>'CheckApiAuth'],function(){
         Route::post('/change-status',[JobsOffersControllerResource::class,'change_status']);
         Route::post('/change-applicant-status',[JobsOffersControllerResource::class,'change_applicant_status']);
+        Route::post('/get-applicants',[ApplicantController::class,'get_applicants']);
     });
 
 
