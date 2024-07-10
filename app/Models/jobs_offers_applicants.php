@@ -10,7 +10,7 @@ class jobs_offers_applicants extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['job_id','user_resume_id ','status'];
+    protected $fillable = ['job_id','user_resume_id','status'];
     protected $casts = [
       'status'=>JobsOffersApplicantsStatusEnum::class
     ];

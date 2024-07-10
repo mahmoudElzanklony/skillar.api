@@ -11,6 +11,8 @@ use App\Filters\jobs_offers\CountryIdFilter;
 use App\Filters\jobs_offers\MaxExperienceFilter;
 use App\Filters\jobs_offers\MinExperienceFilter;
 use App\Filters\jobs_offers\NameFilter;
+use App\Filters\jobs_offers\NIDFilter;
+use App\Filters\jobs_offers\NIDFilterr;
 use App\Filters\StartDateFilter;
 use App\Http\Actions\JobOffersWithAllData;
 use App\Http\Requests\jobOfferFormRequest;
@@ -51,7 +53,8 @@ class JobsOffersControllerResource extends Controller
                 CompanyIdFilter::class,
                 MinExperienceFilter::class,
                 MaxExperienceFilter::class,
-                NameFilter::class
+                NameFilter::class,
+                NIDFilter::class
             ])
             ->thenReturn()
             ->paginate(10);

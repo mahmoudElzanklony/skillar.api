@@ -6,7 +6,8 @@ class NameFilter
 {
     public function handle($request, Closure $next){
         if(request()->has('name')){
-            return $next($request)->whereRaw("(name LIKE '%".request('name')."%' OR description LIKE '%".request('name')."%' )");
+            $result = substr(request('name'), 0, 8);
+            return $next($request)->whereRaw("(name LIKE '%".$result."%' OR description LIKE '%".$result."%' )");
         }
         return $next($request);
     }

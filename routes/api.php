@@ -17,6 +17,7 @@ use App\Http\Controllers\classes\general\GeneralServiceController;
 use App\Http\Controllers\JobsOffersControllerResource;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CategoriesJobsControllerResource;
+use App\Http\Controllers\ApplicantController;
 
 
 
@@ -98,6 +99,11 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
     Route::group(['prefix'=>'/users','middleware'=>'CheckApiAuth'],function(){
         Route::post('/save',[UsersController::class,'save']);
+    });
+
+    Route::group(['prefix'=>'/applicants','middleware'=>'CheckApiAuth'],function(){
+        Route::get('/specific_one',[ApplicantController::class,'specific_one']);
+        Route::post('/apply',[ApplicantController::class,'apply_job']);
     });
 
     Route::resources([

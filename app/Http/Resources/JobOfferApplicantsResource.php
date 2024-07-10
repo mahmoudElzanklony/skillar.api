@@ -24,7 +24,9 @@ class JobOfferApplicantsResource extends JsonResource
             'id'=>$this->id,
             'job'=>JobOfferResource::make($this->whenLoaded('job')),
             'resume'=>UserResumeResource::make($this->whenLoaded('resume')),
-            'status'=>$this->status,
+            'job_id'=>$this->job_id,
+            'user_resume_id'=>$this->user_resume_id,
+            'status'=>$this->status ?? 'pending',
             'created_at'=>$this->created_at->format('Y h d,h:i A'),
         ];
     }
