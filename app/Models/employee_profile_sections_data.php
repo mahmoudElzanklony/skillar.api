@@ -17,4 +17,14 @@ class employee_profile_sections_data extends Model
     {
         return $this->hasMany(employee_profile_info::class,'employee_profile_section_id');
     }
+
+    public function first_attribute_data()
+    {
+        return $this->hasOne(employee_profile_info::class,'employee_profile_section_id');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(sections::class,'section_id');
+    }
 }
