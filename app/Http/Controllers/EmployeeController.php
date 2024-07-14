@@ -99,8 +99,13 @@ class EmployeeController extends Controller
 
     public function get_info_data()
     {
+        if(request()->filled('user_id')){
+            $user_id = request('user_id');
+        }else{
+            $user_id = auth()->id();
+        }
         $data = employee_profile_sections_data::query()
-            ->where('user_id','=',auth()->id())
+            ->where('user_id','=',$user_id)
             ->when(request()->filled('section_id'),function ($e){
                 $e->where('section_id','=',request('section_id'));
             })->with('attributes_data.attribute')

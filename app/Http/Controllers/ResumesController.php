@@ -14,7 +14,12 @@ class ResumesController extends Controller
     use upload_image;
     public function index()
     {
-        $data = users_resumes::query()->where('user_id',auth()->id())->orderBy('id','DESC')->get();
+        if(request()->filled('user_id')){
+            $user_id = request('user_id');
+        }else{
+            $user_id = auth()->id();
+        }
+        $data = users_resumes::query()->where('user_id',$user_id)->orderBy('id','DESC')->get();
         return UserResumeResource::collection($data);
     }
 
