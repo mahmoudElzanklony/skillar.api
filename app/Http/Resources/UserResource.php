@@ -23,6 +23,8 @@ class UserResource extends JsonResource
           'owner_cvs'=>$this->owner_cvs_count ?? null,
           'fork_cvs'=>$this->fork_cvs_count ?? null,
           'image'=>ImageResource::make($this->whenLoaded('image')),
+          'profile_sections'=>EmployeeProfileSectionResource::collection($this->whenLoaded('profile_sections_data')),
+          'bio'=> $this->bio ?? '',
           'created_at'=>$this->created_at != null ? $this->created_at->format('Y h d,h:i A'):'',
         ];
     }

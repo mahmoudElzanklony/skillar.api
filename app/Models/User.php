@@ -111,5 +111,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(skills::class,users_skills::class,'user_id','skill_id')->withPivot('sub_skill','level');
     }
 
+    public function profile_sections_data()
+    {
+        return $this->hasMany(employee_profile_sections_data::class,'user_id');
+    }
+
 
 }

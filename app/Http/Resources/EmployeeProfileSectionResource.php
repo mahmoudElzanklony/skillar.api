@@ -18,7 +18,8 @@ class EmployeeProfileSectionResource extends JsonResource
           'id'=>$this->id,
           'user_id'=>$this->user_id,
           'section_id'=>$this->section_id,
-          'attributes_data'=>EmployeeInfoItemResource::collection($this->whenLoaded('attributes_data'))
+          'attributes_data'=>EmployeeInfoItemResource::collection($this->whenLoaded('attributes_data')),
+          'first_attribute_data'=>EmployeeInfoItemResource::make($this->whenLoaded('first_attribute_data'))
         ];
     }
 }

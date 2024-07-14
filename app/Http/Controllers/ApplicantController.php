@@ -34,7 +34,7 @@ class ApplicantController extends Controller
     public function get_applicants()
     {
         $data = jobs_offers_applicants::query()->where('job_id','=',request('job_id'))
-            ->with('resume.user')->orderBy('id','DESC')->get();
+            ->with('resume.user',fn($e)=> $e->with(['image','profile_sections_data'=>fn($q) => $q->whereHas('section',fn($query)=> $query->whereRaw('name LIKE "%skill%"'))->with('first_attribute_data')]))->orderBy('id','DESC')->get();
         return JobOfferApplicantsResource::collection($data);
     }
 }
