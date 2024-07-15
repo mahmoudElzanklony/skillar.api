@@ -16,6 +16,7 @@ use App\Filters\jobs_offers\NIDFilterr;
 use App\Filters\StartDateFilter;
 use App\Http\Actions\JobOffersWithAllData;
 use App\Http\Requests\jobOfferFormRequest;
+use App\Http\Resources\JobOfferApplicantResource;
 use App\Http\Resources\JobOfferResource;
 use App\Http\traits\messages;
 use App\Models\jobs_offers;
@@ -139,19 +140,18 @@ class JobsOffersControllerResource extends Controller
     public function change_applicant_status()
     {
         if(request()->filled('id') && request()->filled('status')) {
-            return jobs_offers_applicants::query()->find(request('id'))->updateOrFailWithCustomError(['status' => request('status')], __('errors.ops_something_wrong_with_execute'), __('messages.operation_done_successfully'));
+            return jobs_offers_applicants::query()
+                ->find(request('id'))->updateOrFailWithCustomError(['status' => request('status')], __('errors.ops_something_wrong_with_execute'), __('messages.operation_done_successfully'));
         }
         return $this->success_output(__('messages.operation_done_successfully'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function applied_jobs()
     {
-        //
+        $data = jobs_offers_applicants::query()
+            ->with(['resume','job.company.image'])->whereHas('resume',function ($e){
+            $e->where('user_id','=',request('user_id') ?? auth()->id());
+        })->orderBy('id','DESC')->get();
+        return JobOfferApplicantResource::collection($data);
     }
 }
