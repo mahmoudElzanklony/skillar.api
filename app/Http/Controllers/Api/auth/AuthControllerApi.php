@@ -104,7 +104,7 @@ class AuthControllerApi extends AuthServicesClass
         //$user['role'] = roles::query()->find($user->role_id);
         $user =  JWTAuth::parseToken()->authenticate();
         $user['role'] = $user->load('role');
-        $user['image'] = $user->load('image');
+        $user['image'] = ['name'=>$user->image ?? 'default.png'];
         return $user;
     }
 
