@@ -57,6 +57,7 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
         Route::post('/save-video',[UsersController::class,'save_video']);
         Route::post('/get-video',[UsersController::class,'get_video']);
         Route::post('/get-feedbacks',[FeedbacksController::class,'index']);
+        Route::post('/get-applied-jobs',[JobsOffersControllerResource::class,'applied_jobs']);
         Route::post('/update-feedback-status',[FeedbacksController::class,'update_status']);
         Route::post('/make-feedback',[FeedbacksController::class,'make_feedback']);
         Route::post('/visit',[\App\Http\Controllers\VisitsController::class,'create']);

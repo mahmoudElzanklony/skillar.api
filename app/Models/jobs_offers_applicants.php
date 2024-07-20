@@ -18,4 +18,9 @@ class jobs_offers_applicants extends Model
     {
         return $this->belongsTo(users_resumes::class,'user_resume_id');
     }
+
+    public function job()
+    {
+        return $this->belongsTo(jobs_offers::class,'job_id');
+    }
 }
