@@ -16,6 +16,7 @@ return [
     'there_is_no_data_to_preview'=>'There is no data to preview',
     'ops_something_wrong'=>'Ops. there is something wrong in your request',
     'ops_something_wrong_with_execute'=>'Ops. there is something wrong in execute this request',
+    'activation_error'=>'There is an error in activation process please try again',
 
 
 

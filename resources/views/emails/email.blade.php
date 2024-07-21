@@ -22,7 +22,7 @@
 
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <title>Sync Upgrade |{ !! $details['title'] !! } </title>
+    <title>Skillar |{ !! $details['title'] !! } </title>
     <meta name="description" content="Reset Password Email">
     <style type="text/css">
         a:hover {
@@ -67,7 +67,7 @@
                                     <span
                                         style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
                                     <p>{{ $details['body'] }}</p>
-                                    </p>
+
                                     <a href="{{ $details['link']  }}">{{  $details['link_msg'] }}</a>
 
                                 </td>

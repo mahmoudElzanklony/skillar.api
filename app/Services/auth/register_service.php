@@ -21,7 +21,6 @@ class register_service
             // role is correct
             if ($role != null) {
                 $user_info['address'] = '';
-                $user_info['serial_number'] = time();
                 $user_info['role_id'] = $role->id;
                 $user_info['password'] = bcrypt($user_info['password']);
                 // create new user

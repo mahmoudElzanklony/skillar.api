@@ -18,7 +18,8 @@ use App\Http\Controllers\JobsOffersControllerResource;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CategoriesJobsControllerResource;
 use App\Http\Controllers\ApplicantController;
-
+use App\Http\Controllers\ActivationAccountController;
+use App\Http\Controllers\ColleaguesController;
 
 
 Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
@@ -53,6 +54,8 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
     // ---------------------start of profile actions --------------------
     Route::group(['prefix'=>'/profile','middleware'=>'CheckApiAuth'],function (){
+        Route::get('/send-activation',[ActivationAccountController::class,'send_activation'])->middleware('CheckApiAuth');
+        Route::get('/activation',[ActivationAccountController::class,'activate'])->middleware('CheckApiAuth');
         Route::post('/see-account-profile',[UsersController::class,'see_account_profile']);
         Route::post('/save-video',[UsersController::class,'save_video']);
         Route::post('/get-video',[UsersController::class,'get_video']);
@@ -79,7 +82,10 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     });
     // ---------------------end of employee actions --------------------
 
+    Route::group(['prefix'=>'/colleagues','middleware'=>'CheckApiAuth'],function (){
+        Route::get('/',[ColleaguesController::class,'index']);
 
+    });
 
 
 

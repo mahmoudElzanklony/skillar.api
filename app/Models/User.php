@@ -14,6 +14,15 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable , SoftDeletes;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->serial_number = time();
+        });
+    }
+
     protected $appends = ['full_name'];
 
 
@@ -40,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function setSerialNumberAttribute()
     {
-        $this->attributes['serial_number'] = Str::uuid();
+        $this->attributes['serial_number'] = time();
     }
 
      public function getFullNameAttribute()
@@ -63,6 +72,7 @@ class User extends Authenticatable implements JWTSubject
         'block',
         'role_id',
         'country_id',
+        'serial_number'
 
 
     ];

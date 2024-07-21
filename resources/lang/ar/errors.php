@@ -16,4 +16,6 @@ return [
     'there_is_no_data_to_preview'=>'لا يوجد بيانات لعرضها',
     'ops_something_wrong'=>'هناك شئ خاطئ في هذا الطلب',
     'ops_something_wrong_with_execute'=>'هناك شئ خاطئ في تنفيذ هذا الطلب',
+    'activation_error'=>'هناك خطأ في عملية التفعيل',
+
 ];

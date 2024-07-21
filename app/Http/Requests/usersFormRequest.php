@@ -36,7 +36,7 @@ class usersFormRequest extends FormRequest
             'country_id'=>'required|integer|exists:countries,id',
             'username'=>'required|max:191',
             'email'=>'required|email|max:191|unique:users,email',
-            'password'=>'required|min:7|max:191',
+            'password'=>'required|min:7|confirmed|max:191',
             'phone'=>'required|min:7',
             'address'=>'nullable|max:191',
             'image'=>'filled|image|mimes:jpg,jpeg,png,gif',

@@ -22,9 +22,11 @@ class UserResource extends JsonResource
           'country'=>CountryResource::make($this->whenLoaded('country')),
           'owner_cvs'=>$this->owner_cvs_count ?? null,
           'fork_cvs'=>$this->fork_cvs_count ?? null,
-          'image'=>ImageResource::make($this->whenLoaded('image')),
+          'image'=>['name'=>$this->image ?? 'default.png'],
           'profile_sections'=>EmployeeProfileSectionResource::collection($this->whenLoaded('profile_sections_data')),
           'bio'=> $this->bio ?? '',
+          'serial_number'=> $this->serial_number,
+          'email_verified_at'=> $this->email_verified_at,
           'created_at'=>$this->created_at != null ? $this->created_at->format('Y h d,h:i A'):'',
         ];
     }

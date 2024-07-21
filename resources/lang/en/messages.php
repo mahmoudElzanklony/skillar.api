@@ -15,5 +15,7 @@ return [
     'payment_success'=>'Payment has been done successfully',
     'operation_done_successfully'=>'Operation done successfully',
     'feedback_will_appear_in_your_profile'=>'Feedback will appear in your profile',
+    'send_email_successfully'=>'Email sent successfully',
+    'activation_done_successfully'=>'Activation done successfully',
 
 ];
