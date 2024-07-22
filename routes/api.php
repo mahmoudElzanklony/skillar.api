@@ -19,6 +19,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CategoriesJobsControllerResource;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ActivationAccountController;
+use App\Http\Controllers\CompaniesRankController;
 use App\Http\Controllers\ColleaguesController;
 
 
@@ -84,7 +85,9 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
     Route::group(['prefix'=>'/colleagues','middleware'=>'CheckApiAuth'],function (){
         Route::get('/',[ColleaguesController::class,'index']);
-
+    });
+    Route::group(['prefix'=>'/companies','middleware'=>'CheckApiAuth'],function (){
+        Route::get('/',[CompaniesRankController::class,'index']);
     });
 
 
@@ -130,7 +133,7 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
 
     Route::post('/upload-excel',[GeneralServiceController::class,'upload']);
-    Route::get('/notifications',[NotificationsController::class,'index']);
+    Route::get('/notifications',[NotificationsController::class,'index'])->middleware('CheckApiAuth');
 
 
 

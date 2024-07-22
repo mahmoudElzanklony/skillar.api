@@ -14,7 +14,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $arr =  [
           'id'=>$this->id,
           'username'=>$this->username,
           'email'=>$this->email,
@@ -29,5 +29,15 @@ class UserResource extends JsonResource
           'email_verified_at'=> $this->email_verified_at,
           'created_at'=>$this->created_at != null ? $this->created_at->format('Y h d,h:i A'):'',
         ];
+        if(isset($this->applicants_count)){
+            $arr['applicants_count'] = $this->applicants_count;
+        }
+        if(isset($this->jobs_count)){
+            $arr['jobs_count'] = $this->jobs_count;
+        }
+        if(isset($this->views)){
+            $arr['views'] = $this->views;
+        }
+        return $arr;
     }
 }

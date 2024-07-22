@@ -126,5 +126,20 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(employee_profile_sections_data::class,'user_id');
     }
 
+    public function views()
+    {
+        return $this->hasOne(users_views::class,'user_id');
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(jobs_offers::class,'company_id');
+    }
+
+    public function applicants()
+    {
+        return $this->hasManyThrough(jobs_offers_applicants::class,jobs_offers::class,'company_id','job_id');
+    }
+
 
 }
