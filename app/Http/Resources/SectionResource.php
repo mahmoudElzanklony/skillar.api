@@ -18,6 +18,7 @@ class SectionResource extends JsonResource
         return [
           'id'=>$this->id,
           'name'=>FormRequestHandleInputs::handle_output_column($this->name),
+          'en_name'=>json_decode($this->name, true)['en'],
           'info'=>FormRequestHandleInputs::handle_output_column($this->info),
           'image'=>ImageResource::make($this->whenLoaded('image')) ,
           'attributes'=>AttributeResource::collection($this->whenLoaded('attributes')),

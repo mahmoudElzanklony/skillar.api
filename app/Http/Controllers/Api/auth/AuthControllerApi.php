@@ -107,7 +107,7 @@ class AuthControllerApi extends AuthServicesClass
             $user = User::query()->find(request('user_id'));
         }
         $user['role'] = $user->load('role');
-        $user['image'] = $user->load('image');
+        $user['image'] = ['name'=>$user->image ?? 'default.png'];
         return $user;
     }
 

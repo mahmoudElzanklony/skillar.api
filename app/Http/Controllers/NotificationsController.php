@@ -10,7 +10,8 @@ class NotificationsController extends Controller
 {
     //
     public function index(){
-        $notifications = notifications::query()->orderBy('id','DESC')->paginate(20);
-        return NotificationResource::collection($notifications);
+        auth()->user()->unreadNotifications->markAsRead();
+        $data =  NotificationResource::collection(auth()->user()->Notifications()->paginate(request('limit') ?? 10));
+        return $data;
     }
 }

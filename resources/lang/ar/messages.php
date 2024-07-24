@@ -16,4 +16,6 @@ return [
   'operation_done_successfully'=>'تمت العملية بنجاح',
   'created_successfully'=>'تمت عملية الاضافة بنجاح',
   'feedback_will_appear_in_your_profile'=>'سيتم ظهور هذا التقييم علي ملفك الشخصي',
+  'send_email_successfully'=>'تم الارسال الي بريدك الالكتروني بنجاح',
+  'activation_done_successfully'=>'تمت عملية التفعيل بنجاح',
 ];
