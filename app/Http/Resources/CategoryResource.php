@@ -15,10 +15,15 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $arr =  [
             'id'=>$this->id,
             'name'=>FormRequestHandleInputs::handle_output_column($this->name),
+            'image'=>ImageResource::make($this->whenLoaded('image')),
             'created_at'=>$this->created_at->format('Y h d,h:i A'),
         ];
+        if(isset($this->jobs_count)){
+            $arr['jobs_count'] = $this->jobs_count;
+        }
+        return $arr;
     }
 }

@@ -16,7 +16,7 @@ class CategoriesJobsControllerResource extends Controller
     public function index()
     {
         //
-        $data = jobs_categories::query()->orderByDesc('id')->get();
+        $data = jobs_categories::query()->with('image')->orderByDesc('id')->get();
         return CategoryResource::collection($data);
     }
 
@@ -84,5 +84,14 @@ class CategoriesJobsControllerResource extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function categories_statistics()
+    {
+        $data = jobs_categories::query()
+            ->withCount('jobs')
+            ->with('image')
+            ->orderByDesc('id')->get();
+        return CategoryResource::collection($data);
     }
 }

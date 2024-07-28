@@ -11,13 +11,18 @@ use Illuminate\Http\Request;
 class ApplicantController extends Controller
 {
     //
+
+
     public function specific_one()
     {
         $data =  jobs_offers_applicants::query()
             ->where('job_id',request('job_id'))
-            ->whereHas('resume',function ($e){
-                $e->where('user_id','=',auth()->id());
-            })->first();
+            ->when(auth()->check(),function ($e){
+                $e->whereHas('resume',function ($e){
+                    $e->where('user_id','=',auth()->id());
+                });
+            })
+            ->first();
         if($data != null){
         return JobOfferApplicantsResource::make($data);
         }

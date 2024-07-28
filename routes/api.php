@@ -89,6 +89,9 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     Route::group(['prefix'=>'/companies','middleware'=>'CheckApiAuth'],function (){
         Route::get('/',[CompaniesRankController::class,'index']);
     });
+    Route::group(['prefix'=>'/statistics'],function (){
+        Route::get('/categories',[CategoriesJobsControllerResource::class,'categories_statistics']);
+    });
 
 
 
