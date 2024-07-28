@@ -71,7 +71,12 @@ class JobsOffersControllerResource extends Controller
     public function save($data)
     {
         DB::beginTransaction();
-        $data['company_id'] = auth()->id();
+        if(isset($data['id'])){
+            $user_id = jobs_offers::query()->find($data['id'])->id;
+        }else{
+            $user_id = auth()->id();
+        }
+        $data['company_id'] = $user_id;
         $job = jobs_offers::query()->updateOrCreate([
             'id'=>$data['id'] ?? null
         ],$data);
