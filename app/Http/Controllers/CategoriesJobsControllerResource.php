@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Actions\ImageModalSave;
+use App\Http\Requests\categoriesJobsFormRequest;
 use App\Http\Resources\CategoryResource;
+use App\Http\traits\messages;
+use App\Models\categories;
 use App\Models\jobs_categories;
+use App\Services\FormRequestHandleInputs;
 use Illuminate\Http\Request;
-
+use App\Http\traits\upload_image;
 class CategoriesJobsControllerResource extends Controller
 {
+    use upload_image;
     /**
      * Display a listing of the resource.
      *
@@ -29,16 +35,31 @@ class CategoriesJobsControllerResource extends Controller
     {
         //
     }
-
+    public function save($data,$image)
+    {
+        $output = jobs_categories::query()->updateOrCreate([
+            'id'=>$data['id'] ?? null
+        ],$data);
+        if($image){
+            $file = $this->upload($image,'categories');
+            ImageModalSave::make($output->id,'jobs_categories',$file);
+        }
+        $output->load('image');
+        $output->loadCount('jobs');
+        return messages::success_output(trans('messages.saved_successfully'),CategoryResource::make($output));
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(categoriesJobsFormRequest $request)
     {
         //
+        $data = $request->validated();
+        $data =  FormRequestHandleInputs::handle_inputs_langs($data,['name']);
+        return $this->save($data,request()->hasFile('image') ? request()->file('image'):false);
     }
 
     /**
@@ -70,9 +91,13 @@ class CategoriesJobsControllerResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(categoriesJobsFormRequest $request, $id)
     {
         //
+        $data = $request->validated();
+        $data =  FormRequestHandleInputs::handle_inputs_langs($data,['name']);
+        $data['id'] = $id;
+        return $this->save($data,request()->hasFile('image') ? request()->file('image'):false);
     }
 
     /**

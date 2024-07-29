@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\languages;
 use App\Services\FormRequestHandleInputs;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,6 +24,12 @@ class CategoryResource extends JsonResource
         ];
         if(isset($this->jobs_count)){
             $arr['jobs_count'] = $this->jobs_count;
+        }
+        if(request()->hasHeader('AllLangs')){
+            $langs = languages::query()->select('prefix')->get();
+            // data
+            $name = FormRequestHandleInputs::handle_output_column_for_all_lang('name',$this->name,$langs);
+            return array_merge($arr,$name);
         }
         return $arr;
     }

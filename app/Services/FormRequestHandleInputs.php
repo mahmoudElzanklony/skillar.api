@@ -67,4 +67,13 @@ class FormRequestHandleInputs
         }
         return '';
     }
+
+    public static function handle_output_column_for_all_lang($name,$value,$langs){
+        $arr = [];
+        $value = json_decode($value, true) ?? '';
+        foreach($langs as $lang){
+            $arr[$lang->prefix.'_'.$name] = $value[$lang->prefix] ?? '';
+        }
+        return $arr;
+    }
 }
