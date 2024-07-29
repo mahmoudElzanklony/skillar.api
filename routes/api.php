@@ -96,7 +96,7 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
 
     Route::group(['prefix'=>'/dashboard','middleware'=>'CheckApiAuth'],function(){
-        Route::post('/users',[DashboardController::class,'users']);
+        Route::get('/users',[DashboardController::class,'users']);
         Route::post('/users/save',[UsersController::class,'update_personal_info']);
 
         Route::group(['prefix'=>'/languages'],function(){

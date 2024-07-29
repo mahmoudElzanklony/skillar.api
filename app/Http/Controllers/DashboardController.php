@@ -30,9 +30,9 @@ class DashboardController extends Controller
     use TemplatesHelper , SectionsHelper , AttributesHelper , LanguagesHelper , TablesPrivilegesHelper , TemplateSecAttrValueHelper;
 
     public function users(){
-        $data = User::query()
-            ->withCount('owner_cvs')
-            ->withCount('fork_cvs')
+        $data = User::query()->with('role')
+            ->withCount('jobs')
+            ->withCount('applicants')
             ->with('country')->orderBy('id','DESC');
         $output = app(Pipeline::class)
             ->send($data)
@@ -42,7 +42,7 @@ class DashboardController extends Controller
                 EndDateFilter::class
             ])
             ->thenReturn()
-            ->paginate(25);
+            ->paginate(1);
         return UserResource::collection($output);
     }
 
