@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class FilterRequest
 {
     public function handle($request, Closure $next){
-        $filter = Str::snake(str_replace('Filter','',class_basename($this)));
+        $filter = Str::snake(str_replace('Filter','',class_basename($this))); // username
         if (! request()->has($filter)) {
             return $next($request);
         }

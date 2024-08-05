@@ -21,6 +21,6 @@ class jobs_offers_applicants extends Model
 
     public function job()
     {
-        return $this->belongsTo(jobs_offers::class,'job_id');
+        return $this->belongsTo(jobs_offers::class,'job_id')->withTrashed();
     }
 }

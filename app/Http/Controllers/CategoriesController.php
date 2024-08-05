@@ -19,7 +19,7 @@ class CategoriesController extends Controller
         $output = app(Pipeline::class)
             ->send($data)
             ->through([
-                NameFilter::class
+                NameFilter::class,
             ])
             ->thenReturn()
             ->get();

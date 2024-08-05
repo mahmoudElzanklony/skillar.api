@@ -21,6 +21,7 @@ use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ActivationAccountController;
 use App\Http\Controllers\CompaniesRankController;
 use App\Http\Controllers\ColleaguesController;
+use App\Http\Controllers\InboxController;
 
 
 Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
@@ -86,7 +87,7 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     Route::group(['prefix'=>'/colleagues','middleware'=>'CheckApiAuth'],function (){
         Route::get('/',[ColleaguesController::class,'index']);
     });
-    Route::group(['prefix'=>'/companies','middleware'=>'CheckApiAuth'],function (){
+    Route::group(['prefix'=>'/companies'],function (){
         Route::get('/',[CompaniesRankController::class,'index']);
     });
     Route::group(['prefix'=>'/statistics'],function (){
@@ -117,6 +118,12 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
     Route::group(['prefix'=>'/applicants','middleware'=>'CheckApiAuth'],function(){
         Route::get('/specific_one',[ApplicantController::class,'specific_one']);
         Route::post('/apply',[ApplicantController::class,'apply_job']);
+    });
+
+    Route::group(['prefix'=>'/chat','middleware'=>'CheckApiAuth'],function(){
+        Route::post('/get-friends',[InboxController::class,'get_friends']);
+        Route::post('/get-conversation',[InboxController::class,'get_conversation']);
+        Route::post('/send-message',[InboxController::class,'send_message']);
     });
 
     Route::resources([

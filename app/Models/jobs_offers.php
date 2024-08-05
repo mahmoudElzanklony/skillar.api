@@ -7,9 +7,11 @@ use App\Enum\WorkTimeEnum;
 use App\Enum\WorkTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class jobs_offers extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     protected $fillable =['company_id','category_id','name','min_experience','max_experience','description','responsibilities','city_id','work_time','work_type','salary','views','status'];
