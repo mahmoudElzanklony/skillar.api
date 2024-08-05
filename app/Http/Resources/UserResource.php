@@ -19,6 +19,7 @@ class UserResource extends JsonResource
           'username'=>$this->username,
           'email'=>$this->email,
           'phone'=>$this->phone,
+          'role'=>RoleResource::make($this->whenLoaded('role')),
           'country'=>CountryResource::make($this->whenLoaded('country')),
           'owner_cvs'=>$this->owner_cvs_count ?? null,
           'fork_cvs'=>$this->fork_cvs_count ?? null,
