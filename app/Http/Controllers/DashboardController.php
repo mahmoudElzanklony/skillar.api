@@ -31,6 +31,7 @@ class DashboardController extends Controller
 
     public function users(){
         $data = User::query()->with('role')
+            ->whereRaw('id != '.auth()->id())
             ->withCount('jobs')
             ->withCount('applicants')
             ->with('country')->orderBy('id','DESC');
@@ -42,7 +43,7 @@ class DashboardController extends Controller
                 EndDateFilter::class
             ])
             ->thenReturn()
-            ->paginate(1);
+            ->paginate(request('limit') ?? 10);
         return UserResource::collection($output);
     }
 

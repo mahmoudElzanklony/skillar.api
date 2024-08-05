@@ -83,7 +83,9 @@ Route::group(['middleware'=>['changeLang','throttle:apiLimit']],function (){
 
     });
     // ---------------------end of employee actions --------------------
-
+    Route::group(['prefix'=>'/all','middleware'=>'CheckApiAuth'],function (){
+        Route::post('/users',[DashboardController::class,'users']);
+    });
     Route::group(['prefix'=>'/colleagues','middleware'=>'CheckApiAuth'],function (){
         Route::get('/',[ColleaguesController::class,'index']);
     });

@@ -28,7 +28,7 @@ class InboxController extends Controller
             ->when(request()->filled('conversation_id'),function ($e){
                 $e->where('conversation_id','=',request('conversation_id'));
             })
-            ->paginate(15);
+            ->paginate(150);
         $receiver = User::query()
             ->with('image')
             ->find(request('receiver_id'));
