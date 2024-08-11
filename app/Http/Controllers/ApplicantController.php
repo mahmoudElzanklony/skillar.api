@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\JobsOffersApplicantsStatusEnum;
 use App\Http\Requests\jobOfferApplicantFormRequest;
 use App\Http\Resources\JobOfferApplicantsResource;
 use App\Http\traits\messages;
@@ -31,6 +32,7 @@ class ApplicantController extends Controller
     public function apply_job(jobOfferApplicantFormRequest $request)
     {
         $data = $request->validated();
+        $data['status'] = JobsOffersApplicantsStatusEnum::pending;
         $output  = jobs_offers_applicants::query()->create($data);
 
         return messages::success_output(__('messages.saved_successfully'),JobOfferApplicantsResource::make($output));
