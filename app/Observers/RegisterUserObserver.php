@@ -28,7 +28,7 @@ class RegisterUserObserver
      * @param  \App\Models\users_views  $users_views
      * @return void
      */
-    public function updated(users_views $users_views)
+    public function updated(User $user)
     {
         //
 
