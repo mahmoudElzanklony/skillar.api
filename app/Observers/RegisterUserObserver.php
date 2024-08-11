@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\User;
+use App\Models\users_views;
 use App\Notifications\RegisterNotification;
 use App\Notifications\UserViewProfileNotification;
 
