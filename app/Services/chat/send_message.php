@@ -30,7 +30,7 @@ class send_message
         }
         $data['conversation_id'] = $conversation_id;
         // send new message
-        $data['receiver_id'] = 7;
+
         chats::query()->create($data);
 
 
